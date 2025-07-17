@@ -46,11 +46,14 @@ activities = {
 def root():
     return RedirectResponse(url="/static/index.html")
 
-
 @app.get("/activities")
 def get_activities():
     return activities
 
+# Função para listar todas as atividades disponiveis
+@app.get("/activities/list")
+def list_activities():
+    return {"activities": list(activities.keys())}
 
 @app.post("/activities/{activity_name}/signup")
 def signup_for_activity(activity_name: str, email: str):
